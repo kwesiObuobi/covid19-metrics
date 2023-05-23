@@ -26,7 +26,6 @@
 }
 
 .list-items {
-  border: solid 1px red;
   display: grid;
   grid-template-columns: 1fr 1fr;
   list-style: none;
@@ -34,7 +33,6 @@
 }
 
 .list-item {
-  border: solid 1px green;
   height: 10rem;
   padding: 0.5rem;
   background: rgba(0, 0, 255, 0.5);
@@ -55,6 +53,6 @@
   font-weight: 500;
 }
 
-/* .list-item: {
-  background: rgba(0, 0, 255, 0.7);
-} */
+.deep {
+  background: rgba(0, 0, 255, 0.6);
+}

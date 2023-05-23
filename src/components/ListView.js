@@ -10,7 +10,20 @@ const ListView = () => {
     loading, error, data, countries, continents,
   } = useSelector((store) => store.continent);
   const dispatch = useDispatch();
-  // let i = 0;
+  const styledData = [];
+
+  let j = 0;
+  data.forEach((item) => {
+    styledData.push({
+      continent: item.continent,
+      cases: item.cases,
+      deep: !!(j === 1 || j === 2),
+    });
+    j += 1;
+    if (j === 4) {
+      j = 0;
+    }
+  });
 
   useEffect(() => {
     dispatch(fetchContinents(statsBy));
@@ -48,51 +61,23 @@ const ListView = () => {
         </select>
       </div>
 
-      <ul className="list-items">
-        <li className="list-item">
-          <div className="arrow-next"><BiRightArrowCircle /></div>
-          <div>
-            <p className="item-name">Gold Coast Ghana</p>
-            <p className="item-num">98765432</p>
-            <p className="item-cases">cases</p>
-          </div>
-        </li>
-        <li className="list-item">
-          <div className="arrow-next"><BiRightArrowCircle /></div>
-          <div>
-            <p className="item-name">Gold Coast Ghana</p>
-            <p className="item-num">98765432</p>
-            <p className="item-cases">cases</p>
-          </div>
-        </li>
-        <li className="list-item">
-          <div className="arrow-next"><BiRightArrowCircle /></div>
-          <div>
-            <p className="item-name">Gold Coast Ghana</p>
-            <p className="item-num">98765432</p>
-            <p className="item-cases">cases</p>
-          </div>
-        </li>
-        <li className="list-item">
-          <div className="arrow-next"><BiRightArrowCircle /></div>
-          <div>
-            <p className="item-name">Gold Coast Ghana</p>
-            <p className="item-num">98765432</p>
-            <p className="item-cases">cases</p>
-          </div>
-        </li>
-      </ul>
-
-      {countries && data.map((item) => (
+      {countries && styledData.map((item) => (
         <div key={item.country}>
           {item.country}
         </div>
       ))}
-      {continents && data.map((item) => (
-        <div key={item.continent}>
-          {item.continent}
-        </div>
-      ))}
+      <ul className="list-items">
+        {continents && styledData.map((item) => (
+          <li key={item.continent} className={item.deep === true ? 'list-item deep' : 'list-item'}>
+            <div className="arrow-next"><BiRightArrowCircle /></div>
+            <div>
+              <p className="item-name">{item.continent}</p>
+              <p className="item-num">{item.cases}</p>
+              <p className="item-cases">cases</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -18,8 +18,8 @@ const Navbar = () => {
         <li className="nav-li"><IoIosArrowBack /></li>
         <li className="nav-li">covid stats</li>
         <li className="nav-li mic-and-setting">
-          <li className="mic"><HiMicrophone /></li>
-          <li className="settings"><AiOutlineSetting /></li>
+          <div className="mic"><HiMicrophone /></div>
+          <div className="settings"><AiOutlineSetting /></div>
         </li>
       </ul>
     </nav>
