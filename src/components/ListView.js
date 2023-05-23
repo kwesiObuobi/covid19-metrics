@@ -14,11 +14,17 @@ const ListView = () => {
 
   let j = 0;
   data.forEach((item) => {
-    styledData.push({
-      continent: item.continent,
+    let obj = {
       cases: item.cases,
       deep: !!(j === 1 || j === 2),
-    });
+    };
+    if (countries) {
+      obj = { ...obj, country: item.country };
+    }
+    if (continents) {
+      obj = { ...obj, continent: item.continent };
+    }
+    styledData.push(obj);
     j += 1;
     if (j === 4) {
       j = 0;
@@ -61,11 +67,19 @@ const ListView = () => {
         </select>
       </div>
 
-      {countries && styledData.map((item) => (
-        <div key={item.country}>
-          {item.country}
-        </div>
-      ))}
+      <ul className="list-items">
+        {countries && styledData.map((item) => (
+          <li key={item.country} className={item.deep === true ? 'list-item deep' : 'list-item'}>
+            <div className="arrow-next"><BiRightArrowCircle /></div>
+            <div>
+              <p className="item-name">{item.country}</p>
+              <p className="item-num">{item.cases}</p>
+              <p className="item-cases">cases</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
       <ul className="list-items">
         {continents && styledData.map((item) => (
           <li key={item.continent} className={item.deep === true ? 'list-item deep' : 'list-item'}>
