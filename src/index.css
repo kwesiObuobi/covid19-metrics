@@ -6,3 +6,7 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
+
+.center {
+  margin: 0 auto;
+}

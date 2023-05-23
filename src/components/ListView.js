@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { BiRightArrowCircle } from 'react-icons/bi';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveStat, fetchContinents } from '../app/features/continent/continentSlice';
 import '../styles/listview.css';
@@ -12,6 +11,7 @@ const ListView = () => {
   } = useSelector((store) => store.continent);
   const dispatch = useDispatch();
   const styledData = [];
+  let content;
 
   let j = 0;
   data.forEach((item) => {
@@ -37,11 +37,30 @@ const ListView = () => {
   }, [dispatch, statsBy]);
 
   if (loading) {
-    return <p>loading</p>;
+    content = <p>loading</p>;
   }
 
   if (error) {
-    return <p>error loading page</p>;
+    content = <p>error loading page</p>;
+  }
+
+  const renderedData = (
+    <>
+      <ul className="list-items">
+        {countries && styledData.map((item) => (
+          <ListItem key={item.country} item={item} />
+        ))}
+      </ul>
+      <ul className="list-items">
+        {continents && styledData.map((item) => (
+          <ListItem key={item.continent} item={item} />
+        ))}
+      </ul>
+    </>
+  );
+
+  if (!loading) {
+    content = renderedData;
   }
 
   const handleChange = (value) => {
@@ -68,7 +87,7 @@ const ListView = () => {
         </select>
       </div>
 
-      <ul className="list-items">
+      {/* <ul className="list-items">
         {countries && styledData.map((item) => (
           <ListItem key={item.country} item={item} />
         ))}
@@ -78,7 +97,8 @@ const ListView = () => {
         {continents && styledData.map((item) => (
           <ListItem key={item.continent} item={item} />
         ))}
-      </ul>
+      </ul> */}
+      {content}
     </div>
   );
 };
