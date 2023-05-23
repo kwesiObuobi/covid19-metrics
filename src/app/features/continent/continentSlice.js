@@ -14,7 +14,6 @@ const initialState = {
 
 export const fetchContinents = createAsyncThunk('continent/getContinents', async (payload) => {
   try {
-    console.log(`payload from slice: ${payload}`);
     const response = await axios.get(`${URL}/${payload}`);
     return response.data;
   } catch (err) {
@@ -42,9 +41,7 @@ export const continentSlice = createSlice({
 
     builder.addCase(fetchContinents.fulfilled, (state, action) => {
       state.loading = false;
-      // state.data = action.payload;
 
-      // trying this
       const newData = [];
       let j = 1;
       action.payload.forEach((item) => {
