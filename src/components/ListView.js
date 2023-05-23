@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { BiRightArrowCircle } from 'react-icons/bi';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveStat, fetchContinents } from '../app/features/continent/continentSlice';
+import '../styles/listview.css';
 
 const ListView = () => {
   const [statsBy, setStatsBy] = useState('continents');
@@ -8,6 +10,7 @@ const ListView = () => {
     loading, error, data, countries, continents,
   } = useSelector((store) => store.continent);
   const dispatch = useDispatch();
+  // let i = 0;
 
   useEffect(() => {
     dispatch(fetchContinents(statsBy));
@@ -30,20 +33,56 @@ const ListView = () => {
   return (
     <div className="listview-container">
       <div className="stats-by">
-        <h3>stats by:</h3>
+        <h3 className="stats-by-h3">stats by:</h3>
         <select
           name="stats-by"
           id="stats-by"
+          className="stats-select"
           value={statsBy}
           onChange={(e) => {
-            // e.preventDefault();
             handleChange(e.target.value);
           }}
         >
-          <option>continents</option>
-          <option>countries</option>
+          <option className="option">continents</option>
+          <option className="option">countries</option>
         </select>
       </div>
+
+      <ul className="list-items">
+        <li className="list-item">
+          <div className="arrow-next"><BiRightArrowCircle /></div>
+          <div>
+            <p className="item-name">Gold Coast Ghana</p>
+            <p className="item-num">98765432</p>
+            <p className="item-cases">cases</p>
+          </div>
+        </li>
+        <li className="list-item">
+          <div className="arrow-next"><BiRightArrowCircle /></div>
+          <div>
+            <p className="item-name">Gold Coast Ghana</p>
+            <p className="item-num">98765432</p>
+            <p className="item-cases">cases</p>
+          </div>
+        </li>
+        <li className="list-item">
+          <div className="arrow-next"><BiRightArrowCircle /></div>
+          <div>
+            <p className="item-name">Gold Coast Ghana</p>
+            <p className="item-num">98765432</p>
+            <p className="item-cases">cases</p>
+          </div>
+        </li>
+        <li className="list-item">
+          <div className="arrow-next"><BiRightArrowCircle /></div>
+          <div>
+            <p className="item-name">Gold Coast Ghana</p>
+            <p className="item-num">98765432</p>
+            <p className="item-cases">cases</p>
+          </div>
+        </li>
+      </ul>
+
       {countries && data.map((item) => (
         <div key={item.country}>
           {item.country}

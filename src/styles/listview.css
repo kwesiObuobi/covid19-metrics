@@ -1,0 +1,60 @@
+.listview-container {
+  margin-top: 0.3rem;
+}
+
+.stats-by {
+  background-color: rgba(0, 0, 255, 0.3);
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.3rem;
+}
+
+.stats-by-h3 {
+  font-weight: 600;
+}
+
+.stats-select {
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.option {
+  color: white;
+  background-color: blue;
+}
+
+.list-items {
+  border: solid 1px red;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+  color: white;
+}
+
+.list-item {
+  border: solid 1px green;
+  height: 10rem;
+  padding: 0.5rem;
+  background: rgba(0, 0, 255, 0.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.item-name {
+  font-weight: 600;
+}
+
+.item-num,
+.item-cases  {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* .list-item: {
+  background: rgba(0, 0, 255, 0.7);
+} */
