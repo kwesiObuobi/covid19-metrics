@@ -1,5 +1,5 @@
-import Navbar from './components/Navbar';
 import HomeView from './components/HomeView';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
