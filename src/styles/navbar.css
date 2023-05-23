@@ -1,0 +1,12 @@
+.nav-ul {
+  border: solid 1px red;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.mic-and-setting {
+  display: flex;
+  gap: 0.5rem;
+}
