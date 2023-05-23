@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { BiRightArrowCircle } from 'react-icons/bi';
+// import { BiRightArrowCircle } from 'react-icons/bi';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveStat, fetchContinents } from '../app/features/continent/continentSlice';
 import '../styles/listview.css';
+import ListItem from './ListItem';
 
 const ListView = () => {
   const [statsBy, setStatsBy] = useState('continents');
@@ -69,27 +70,13 @@ const ListView = () => {
 
       <ul className="list-items">
         {countries && styledData.map((item) => (
-          <li key={item.country} className={item.deep === true ? 'list-item deep' : 'list-item'}>
-            <div className="arrow-next"><BiRightArrowCircle /></div>
-            <div>
-              <p className="item-name">{item.country}</p>
-              <p className="item-num">{item.cases}</p>
-              <p className="item-cases">cases</p>
-            </div>
-          </li>
+          <ListItem key={item.country} item={item} />
         ))}
       </ul>
 
       <ul className="list-items">
         {continents && styledData.map((item) => (
-          <li key={item.continent} className={item.deep === true ? 'list-item deep' : 'list-item'}>
-            <div className="arrow-next"><BiRightArrowCircle /></div>
-            <div>
-              <p className="item-name">{item.continent}</p>
-              <p className="item-num">{item.cases}</p>
-              <p className="item-cases">cases</p>
-            </div>
-          </li>
+          <ListItem key={item.continent} item={item} />
         ))}
       </ul>
     </div>
