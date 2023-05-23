@@ -21,8 +21,8 @@
 }
 
 .option {
-  color: white;
-  background-color: blue;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .list-items {
@@ -55,4 +55,8 @@
 
 .deep {
   background: rgba(0, 0, 255, 0.6);
+}
+
+.me {
+  font-size: 16rem;
 }

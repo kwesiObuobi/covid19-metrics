@@ -10,3 +10,13 @@
 .center {
   margin: 0 auto;
 }
+
+a {
+  color: normal;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 3rem;
+}

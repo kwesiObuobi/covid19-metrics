@@ -1,40 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveStat, fetchContinents } from '../app/features/continent/continentSlice';
 import '../styles/listview.css';
 import ListItem from './ListItem';
 
 const ListView = () => {
-  const [statsBy, setStatsBy] = useState('continents');
   const {
     loading, error, data, countries, continents,
   } = useSelector((store) => store.continent);
   const dispatch = useDispatch();
-  const styledData = [];
   let content;
-
-  let j = 0;
-  data.forEach((item) => {
-    let obj = {
-      cases: item.cases,
-      deep: !!(j === 1 || j === 2),
-    };
-    if (countries) {
-      obj = { ...obj, country: item.country };
-    }
-    if (continents) {
-      obj = { ...obj, continent: item.continent };
-    }
-    styledData.push(obj);
-    j += 1;
-    if (j === 4) {
-      j = 0;
-    }
-  });
+  let value;
+  if (continents === true) {
+    value = 'continents';
+  } else {
+    value = 'countries';
+  }
 
   useEffect(() => {
-    dispatch(fetchContinents(statsBy));
-  }, [dispatch, statsBy]);
+    dispatch(fetchContinents(value));
+  }, [value, dispatch]);
 
   if (loading) {
     content = <p>loading</p>;
@@ -47,12 +32,12 @@ const ListView = () => {
   const renderedData = (
     <>
       <ul className="list-items">
-        {countries && styledData.map((item) => (
+        {countries && data.map((item) => (
           <ListItem key={item.country} item={item} />
         ))}
       </ul>
       <ul className="list-items">
-        {continents && styledData.map((item) => (
+        {continents && data.map((item) => (
           <ListItem key={item.continent} item={item} />
         ))}
       </ul>
@@ -63,10 +48,10 @@ const ListView = () => {
     content = renderedData;
   }
 
-  const handleChange = (value) => {
-    setStatsBy(value);
+  const handleChange = (e) => {
+    e.preventDefault();
     dispatch(setActiveStat());
-    dispatch(fetchContinents(value));
+    dispatch(fetchContinents(e.target.value));
   };
 
   return (
@@ -77,27 +62,16 @@ const ListView = () => {
           name="stats-by"
           id="stats-by"
           className="stats-select"
-          value={statsBy}
+          value={value}
           onChange={(e) => {
-            handleChange(e.target.value);
+            handleChange(e);
           }}
         >
-          <option className="option">continents</option>
-          <option className="option">countries</option>
+          <option value="continents" className="option">continents</option>
+          <option value="countries" className="option">countries</option>
         </select>
       </div>
 
-      {/* <ul className="list-items">
-        {countries && styledData.map((item) => (
-          <ListItem key={item.country} item={item} />
-        ))}
-      </ul>
-
-      <ul className="list-items">
-        {continents && styledData.map((item) => (
-          <ListItem key={item.continent} item={item} />
-        ))}
-      </ul> */}
       {content}
     </div>
   );

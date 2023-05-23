@@ -14,6 +14,7 @@ const initialState = {
 
 export const fetchContinents = createAsyncThunk('continent/getContinents', async (payload) => {
   try {
+    console.log(`payload from slice: ${payload}`);
     const response = await axios.get(`${URL}/${payload}`);
     return response.data;
   } catch (err) {
@@ -29,6 +30,10 @@ export const continentSlice = createSlice({
       state.continents = !state.continents;
       state.countries = !state.countries;
     },
+    resetStats: (state) => {
+      state.continents = true;
+      state.countries = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchContinents.pending, (state) => {
@@ -37,7 +42,28 @@ export const continentSlice = createSlice({
 
     builder.addCase(fetchContinents.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      // state.data = action.payload;
+
+      // trying this
+      const newData = [];
+      let j = 1;
+      action.payload.forEach((item) => {
+        let obj = {
+          cases: item.cases,
+          deep: !!(j === 1 || j === 2),
+        };
+        if (state.countries === true) {
+          obj = { ...obj, country: item.country };
+        } else {
+          obj = { ...obj, continent: item.continent };
+        }
+        newData.push(obj);
+        j += 1;
+        if (j === 4) {
+          j = 0;
+        }
+      });
+      state.data = newData;
     });
 
     builder.addCase(fetchContinents.rejected, (state, action) => {
@@ -47,6 +73,6 @@ export const continentSlice = createSlice({
   },
 });
 
-export const { setActiveStat } = continentSlice.actions;
+export const { setActiveStat, resetStats } = continentSlice.actions;
 
 export default continentSlice.reducer;
