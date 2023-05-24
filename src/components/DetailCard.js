@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import { getSingleItem, showBackButton } from '../app/features/continent/continentSlice';
+import '../styles/detailcard.css';
 
 const DetailCard = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const DetailCard = () => {
   }, [dispatch, first, second]);
 
   return (
-    <div>
+    <div className="detail-card">
       <Navbar />
       <div className="item-brand-box">
         <p className="item-brand-name">{second}</p>

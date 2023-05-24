@@ -4,8 +4,10 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <HomeView />
+      <div className="new">
+        <Navbar />
+        <HomeView />
+      </div>
     </div>
   );
 }

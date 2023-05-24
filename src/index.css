@@ -20,3 +20,27 @@ a {
   justify-content: space-around;
   gap: 3rem;
 }
+
+@media screen and (min-width: 400px) {
+  .App,
+  .detail-card {
+    width: 80vw;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .App,
+  .detail-card {
+    width: 60vw;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .App,
+  .detail-card {
+    width: 50vw;
+    margin: 0 auto;
+  }
+}

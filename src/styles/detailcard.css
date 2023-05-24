@@ -1,0 +1,26 @@
+.item-brand-box {
+  padding: 5rem 1rem;
+  background: rgba(0, 0, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-brand-name {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.item-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0.5rem;
+  background-color: rgba(0, 0, 255, 0.5);
+  color: white;
+}
+
+.item-detail:nth-of-type(odd) {
+  background-color: rgba(0, 0, 255, 0.7);
+}
+
+

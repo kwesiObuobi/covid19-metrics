@@ -15,12 +15,8 @@ const router = createBrowserRouter([
   },
   {
     path: '/:first/:second',
-    element: <DetailCard />
+    element: <DetailCard />,
   },
-  // {
-  //   path: '*',
-  //   element: <Navigate to="/" />,
-  // },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
