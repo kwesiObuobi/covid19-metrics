@@ -5,6 +5,7 @@ const URL = 'https://disease.sh/v3/covid-19';
 
 const initialState = {
   data: [],
+  singleData: {},
   loading: false,
   error: undefined,
   inDetail: false,
@@ -87,7 +88,7 @@ export const continentSlice = createSlice({
 
     builder.addCase(getSingleItem.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.singleData = action.payload;
     });
 
     builder.addCase(getSingleItem.rejected, (state, action) => {
