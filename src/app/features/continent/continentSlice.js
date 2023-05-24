@@ -80,6 +80,20 @@ export const continentSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
+
+    builder.addCase(getSingleItem.pending, (state) => {
+      state.loading = true;
+    });
+
+    builder.addCase(getSingleItem.fulfilled, (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+    });
+
+    builder.addCase(getSingleItem.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
   },
 });
 
