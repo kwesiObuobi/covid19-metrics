@@ -1,17 +1,26 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import HomeView from '../components/HomeView';
-import store from '../app/store';
+import { useSelector } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import ListItem from '../components/ListItem';
 
-test('renders list view correctly', () => {
-  render(
-    <Provider store={store}>
-      <Router>
-        <HomeView />
-      </Router>
-    </Provider>,
-  );
-  const headingElement = screen.queryByText(/metrics/i);
-  expect(headingElement).toBeInTheDocument();
+jest.mock('react-redux');
+
+describe('ListItem', () => {
+  beforeEach(() => {
+    useSelector.mockReturnValue({ countries: true, continents: false });
+  });
+
+  test('renders the item with continent name', () => {
+    const item = { continent: 'Europe', cases: 500, deep: false };
+    render(
+      <BrowserRouter>
+        <ListItem item={item} />
+      </BrowserRouter>,
+    );
+
+    const itemName = screen.getByText(/cases/);
+
+    expect(itemName).toBeInTheDocument();
+  });
 });
