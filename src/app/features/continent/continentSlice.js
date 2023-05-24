@@ -21,6 +21,15 @@ export const fetchContinents = createAsyncThunk('continent/getContinents', async
   }
 });
 
+export const getSingleItem = createAsyncThunk('item/getItem', async ({ first, second }) => {
+  try {
+    const response = await axios.get(`${URL}/${first}/${second}`);
+    return response.data;
+  } catch (err) {
+    return err.message;
+  }
+});
+
 export const continentSlice = createSlice({
   name: 'continent',
   initialState,
@@ -43,8 +52,8 @@ export const continentSlice = createSlice({
     });
 
     builder.addCase(fetchContinents.fulfilled, (state, action) => {
-      state.loading = false;
       state.inDetail = false;
+      state.loading = false;
 
       const newData = [];
       let j = 0;
@@ -74,6 +83,6 @@ export const continentSlice = createSlice({
   },
 });
 
-export const { setActiveStat, resetStats } = continentSlice.actions;
+export const { setActiveStat, resetStats, showBackButton } = continentSlice.actions;
 
 export default continentSlice.reducer;

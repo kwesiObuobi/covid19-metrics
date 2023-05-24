@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActiveStat, fetchContinents } from '../app/features/continent/continentSlice';
+import { setActiveStat, fetchContinents, showBackButton } from '../app/features/continent/continentSlice';
 import '../styles/listview.css';
 import ListItem from './ListItem';
 
@@ -18,6 +18,7 @@ const ListView = () => {
   }
 
   useEffect(() => {
+    dispatch(showBackButton());
     dispatch(fetchContinents(value));
   }, [value, dispatch]);
 

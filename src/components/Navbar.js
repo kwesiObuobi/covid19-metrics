@@ -9,10 +9,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const { inDetail } = useSelector((store) => store.continent);
 
-  if (inDetail) {
-    return <p>In detail</p>;
-  }
-
   return (
     <nav className="nav-container">
       <ul className="nav-ul">
