@@ -1,0 +1,13 @@
+.nav-ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0.5rem;
+  background-color: blue;
+  color: white;
+}
+
+.mic-and-setting {
+  display: flex;
+  gap: 0.5rem;
+}

@@ -1,0 +1,22 @@
+.home-view {
+  background-color: rgba(0, 0, 255, 0.1);
+  padding: 1rem 0;
+}
+
+.earth-box {
+  width: 50%;
+  height: 30%;
+  margin: 0 auto;
+}
+
+.earth-img {
+  width: 100%;
+  height: 100%;
+}
+
+.metrics-heading {
+  margin: 0.5rem auto 0;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
