@@ -9,7 +9,7 @@ const Navbar = () => {
   const { inDetail } = useSelector((store) => store.continent);
 
   if (inDetail) {
-    console.log('hi');
+    return <p>In detail</p>;
   }
 
   return (

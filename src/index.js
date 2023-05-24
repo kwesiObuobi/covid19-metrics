@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './app/store';
+import DetailCard from './components/DetailCard';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/:first/:second',
-    element: <p>yes</p>,
+    element: <DetailCard />
   },
   // {
   //   path: '*',

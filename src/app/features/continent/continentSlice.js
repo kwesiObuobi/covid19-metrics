@@ -33,6 +33,9 @@ export const continentSlice = createSlice({
       state.continents = true;
       state.countries = false;
     },
+    showBackButton: (state) => {
+      state.inDetail = true;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchContinents.pending, (state) => {
@@ -41,9 +44,10 @@ export const continentSlice = createSlice({
 
     builder.addCase(fetchContinents.fulfilled, (state, action) => {
       state.loading = false;
+      state.inDetail = false;
 
       const newData = [];
-      let j = 1;
+      let j = 0;
       action.payload.forEach((item) => {
         let obj = {
           cases: item.cases,
